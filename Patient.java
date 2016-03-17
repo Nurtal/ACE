@@ -70,7 +70,7 @@ public class Patient{
 			String[] grapheName_2 = patientToCompare.get_graphe().get_name().split(".png");
 			String name_2 = grapheName_2[0];
 			String diff_image = "DATA/GRAPHES/difference_"+name_1+"_"+name_2+".png";
-			String log_file = "log.txt";
+			String log_file = "DATA/TMP/comparison_"+name_1+"_"+name_2+"_"+"log.txt";
 			try{
 				FileWriter fw = new FileWriter("SCRIPTS/comparison.sh");
 				fw.write("#/bin/bash\n");
@@ -133,10 +133,21 @@ public class Patient{
 
 			System.out.println("--- => Comparison Finished");
 		}
+	}
+
+
+	public void get_CompensationMatrix(){
+		/*
+		* Extract compensation matrix from fcs file
+		*
+		* [IN PROGRESS]
+		*/
+
 
 
 
 	}
+
 
 
 }

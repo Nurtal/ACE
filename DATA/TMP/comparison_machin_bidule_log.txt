@@ -1,0 +1,9 @@
+DATA/GRAPHES/machin.png PNG 480x480 480x480+0+0 8-bit DirectClass 70.4KB 0.000u 0:00.009
+DATA/GRAPHES/bidule.png PNG 480x480 480x480+0+0 8-bit DirectClass 69.7KB 0.010u 0:00.010
+Image: DATA/GRAPHES/machin.png
+  Channel distortion: MAE
+    red: 1737.06 (0.0265058)
+    green: 1729.96 (0.0263975)
+    blue: 1726.31 (0.0263417)
+    all: 1731.11 (0.026415)
+DATA/GRAPHES/machin.png=>DATA/GRAPHES/difference_machin_bidule.png PNG 480x480 480x480+0+0 8-bit DirectClass 73.7KB 0.060u 0:00.049

@@ -27,13 +27,19 @@ public class Ace{
         Patient panda = new Patient("Robert", "/home/foulquier/Bureau/SpellCraft/flowBeads-master/nathan/QC8PeaksBeads_32140219_SAS_ARIA_19MAR2015_19MAR2015.fcs");
         murlock.initialise_graphe("machin.png");
         panda.initialise_graphe("bidule.png");
-        
+
+        murlock.compareTo(panda);
+        murlock.get_graphe().matrixModification(murlock.get_fcsFilename());
         murlock.compareTo(panda);
 
         //System.out.println(murlock.get_grapheName());
 
 
 
+
+
+
+        System.out.println("\n--- # =>     EOF     <= # ---");
 
 
 

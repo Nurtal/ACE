@@ -111,4 +111,72 @@ public class Graphe{
 	}
 
 
+	public void matrixModification(String fcsFileName){
+		/*
+		*
+		* => Create a new graphe with random changes in
+		* the compensation matrix
+		* ( for now work only on random changes )
+		* ( The precedent graphe is replace ) 
+		*
+		* -> Create R Script
+		* -> Execute R Script (generate png)
+		*
+		* TODO: -> check matrix diagonalisation
+		*		-> may be not the best place for this method,
+		*		   relocation on patient class ?
+		*
+		* [APPROVED]
+		*/
+
+
+		// Create the R Script
+		String[] tmpScript_nameInArray = grapheName.split(".png");
+		String tmpScript_name = tmpScript_nameInArray[0]+"_matrixModification.R";
+		try{
+			FileWriter fw = new FileWriter("SCRIPTS/TMP/"+tmpScript_name);
+			fw.write("require(flowCore)\n");
+			fw.write("require(flowClust)\n");
+			fw.write("library(flowViz)\n");
+			fw.write("source(\"SCRIPTS/fcs.R\")\n");
+			fw.write("source(\"SCRIPTS/library.R\")\n");
+			fw.write("x <- flowCore::read.FCS(file.path(\""+fcsFileName+"\"))\n");
+			fw.write("y <- retrieveCompensationMatrix(file.path(\""+fcsFileName+"\"))\n");
+			
+			for(int x = 1; x < 9; x++){
+				for(int y = 1; y < 9; y++){
+					if(y != x){
+						double r = Math.random()*1.0;
+						fw.write("y["+x+","+y+"] <- "+r+"\n");
+					}
+				}
+			}
+
+			fw.write("png(filename=\"DATA/GRAPHES/"+grapheName+"\")\n");
+			fw.write("plot(x)\n");
+			fw.write("dev.off()\n");
+			fw.close();
+		}catch(IOException exception){
+			System.out.println("[ERROR][Graphe Initialisation] "+ exception.getMessage());
+		}
+
+
+		// Execute R Script
+		try{
+			Process init = Runtime.getRuntime().exec("Rscript SCRIPTS/TMP/"+tmpScript_name);
+			try{
+					init.waitFor();
+				}catch(InterruptedException initException){
+					System.out.println("[ERROR][Graphe Modification] :"+ initException.getMessage());
+				}
+		}catch(IOException exception){
+			System.out.println("[ERROR][Graphe Modification] :"+ exception.getMessage());
+		}
+
+	}
+
+
+
+
+
 }
